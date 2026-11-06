@@ -1,20 +1,32 @@
-import Table from "./UI/Table";
+"use client";
 
-export default function CreditTierTable() {
-  const columns = ["tier", "minScore", "maxScore", "adjustment"];
+import React from "react";
 
-  const data = [
-    { tier: "A", minScore: 760, maxScore: 850, adjustment: -0.25 },
-    { tier: "B", minScore: 720, maxScore: 759, adjustment: -0.10 },
-    { tier: "C", minScore: 680, maxScore: 719, adjustment: 0.50 },
-    { tier: "D", minScore: 640, maxScore: 679, adjustment: 1.00 },
-    { tier: "E", minScore: 580, maxScore: 639, adjustment: 1.25 },
-    { tier: "F", minScore: 540, maxScore: 579, adjustment: 1.50 },
-  ];
+interface CreditTier {
+  tier: string;
+  minScore: number;
+  maxScore: number;
+}
 
+export default function CreditTierTable({ tiers }: { tiers: CreditTier[] }) {
   return (
-    <div>
-      <Table columns={columns} data={data} />
-    </div>
+    <table className="w-full text-sm bg-black border border-white/10 rounded-lg overflow-hidden">
+      <thead className="bg-white/5">
+        <tr>
+          <th className="px-3 py-2 text-left">Tier</th>
+          <th className="px-3 py-2 text-left">Min Score</th>
+          <th className="px-3 py-2 text-left">Max Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {tiers.map((t, i) => (
+          <tr key={i} className="border-t border-white/10">
+            <td className="px-3 py-2">{t.tier}</td>
+            <td className="px-3 py-2">{t.minScore}</td>
+            <td className="px-3 py-2">{t.maxScore}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }

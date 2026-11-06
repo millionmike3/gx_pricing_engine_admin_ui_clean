@@ -1,18 +1,33 @@
-import Table from "./UI/Table";
+"use client";
 
-export default function PropertyAdjustmentsTable() {
-  const columns = ["propertyType", "adjustment"];
+import React from "react";
 
-  const data = [
-    { propertyType: "Single Family", adjustment: 0.00 },
-    { propertyType: "Condo", adjustment: 0.15 },
-    { propertyType: "2-4 Unit", adjustment: 0.25 },
-    { propertyType: "Manufactured", adjustment: 0.50 }
-  ];
+interface PropertyAdjustment {
+  property_type: string;
+  adjustment_bps: number;
+}
 
+export default function PropertyAdjustmentsTable({
+  adjustments,
+}: {
+  adjustments: PropertyAdjustment[];
+}) {
   return (
-    <div className="p-4">
-      <Table columns={columns} data={data} />
-    </div>
+    <table className="w-full text-sm bg-black border border-white/10 rounded-lg overflow-hidden">
+      <thead className="bg-white/5">
+        <tr>
+          <th className="px-3 py-2 text-left">Property Type</th>
+          <th className="px-3 py-2 text-right">Adjustment (bps)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {adjustments.map((a, i) => (
+          <tr key={i} className="border-t border-white/10">
+            <td className="px-3 py-2">{a.property_type}</td>
+            <td className="px-3 py-2 text-right">{a.adjustment_bps}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }

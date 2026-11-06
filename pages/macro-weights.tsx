@@ -1,10 +1,11 @@
-import MacroWeightsEditor from "../components/MacroWeightsEditor";
+import MacroWeightsEditor from "../components/pricing-controls/MacroWeightsEditor";
+
+const mockWeights = [
+  { factor: "Inflation", weight: 0.35 },
+  { factor: "GDP Growth", weight: 0.25 },
+  { factor: "Unemployment", weight: 0.40 },
+];
 
 export default function MacroWeights() {
-  return (
-    <div className="p-6">
-      <h1 className="text-xl font-bold mb-4">Macro Weights</h1>
-      <MacroWeightsEditor />
-    </div>
-  );
+  return <MacroWeightsEditor weights={mockWeights} />;
 }

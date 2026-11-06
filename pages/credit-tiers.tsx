@@ -1,10 +1,11 @@
-import CreditTierTable from "../components/CreditTierTable";
+import CreditTierTable from "../components/pricing-controls/CreditTierTable";
+
+const mockTiers = [
+  { tier: "A", minScore: 760, maxScore: 850 },
+  { tier: "B", minScore: 700, maxScore: 759 },
+  { tier: "C", minScore: 640, maxScore: 699 },
+];
 
 export default function CreditTiers() {
-  return (
-    <div className="p-6">
-      <h1 className="text-xl font-bold mb-4">Credit Tiers</h1>
-      <CreditTierTable />
-    </div>
-  );
+  return <CreditTierTable tiers={mockTiers} />;
 }

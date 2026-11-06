@@ -1,19 +1,29 @@
-import Table from "./UI/Table";
+"use client";
 
-export default function LendingTypeTable() {
-  const columns = ["type", "description", "adjustment"];
+import React from "react";
 
-  const data = [
-    { type: "Conventional", description: "Standard agency loan", adjustment: 1.00 },
-    { type: "FHA", description: "Government insured", adjustment: 2.15 },
-    { type: "VA", description: "Veteran loan", adjustment: 2.25 },
-    { type: "Non-QM", description: "Non-qualified mortgage", adjustment: 3.00 },
-    { type: "Hard-Money", description: "Private mortgage", adjustment: 4.00 }
-  ];
+interface LendingType {
+  type: string;
+  description: string;
+}
 
+export default function LendingTypeTable({ types }: { types: LendingType[] }) {
   return (
-    <div className="p-4">
-      <Table columns={columns} data={data} />
-    </div>
+    <table className="w-full text-sm bg-black border border-white/10 rounded-lg overflow-hidden">
+      <thead className="bg-white/5">
+        <tr>
+          <th className="px-3 py-2 text-left">Type</th>
+          <th className="px-3 py-2 text-left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {types.map((t, i) => (
+          <tr key={i} className="border-t border-white/10">
+            <td className="px-3 py-2">{t.type}</td>
+            <td className="px-3 py-2">{t.description}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }

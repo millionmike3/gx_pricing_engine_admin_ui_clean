@@ -1,10 +1,11 @@
-import PropertyAdjustmentsTable from "../components/PropertyAdjustmentsTable";
+import PropertyAdjustmentsTable from "../components/pricing-controls/PropertyAdjustmentsTable";
+
+const mockAdjustments = [
+  { property_type: "Single Family", adjustment_bps: 0 },
+  { property_type: "Condo", adjustment_bps: 25 },
+  { property_type: "Multi‑Family", adjustment_bps: 40 },
+];
 
 export default function PropertyAdjustments() {
-  return (
-    <div className="p-6">
-      <h1 className="text-xl font-bold mb-4">Property Adjustments</h1>
-      <PropertyAdjustmentsTable />
-    </div>
-  );
+  return <PropertyAdjustmentsTable adjustments={mockAdjustments} />;
 }

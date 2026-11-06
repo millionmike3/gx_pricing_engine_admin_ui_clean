@@ -1,10 +1,11 @@
-import MarginProfileEditor from "../components/MarginProfileEditor";
+import MarginProfileEditor from "../components/pricing-controls/MarginProfileEditor";
+
+const mockProfiles = [
+  { name: "Prime", margin_bps: 75 },
+  { name: "Non‑QM", margin_bps: 150 },
+  { name: "Jumbo", margin_bps: 90 },
+];
 
 export default function MarginProfiles() {
-  return (
-    <div className="p-6">
-      <h1 className="text-xl font-bold mb-4">Margin Profiles</h1>
-      <MarginProfileEditor />
-    </div>
-  );
+  return <MarginProfileEditor profiles={mockProfiles} />;
 }

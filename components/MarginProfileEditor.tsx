@@ -1,24 +1,28 @@
-import { useState } from "react";
-import Input from "./UI/Input";
-import Button from "./UI/Button";
+"use client";
 
-export default function MarginProfileEditor() {
-  const [baseMargin, setBaseMargin] = useState(1.25);
-  const [riskMargin, setRiskMargin] = useState(0.50);
+import React from "react";
 
-  const save = () => {
-    console.log("Saving margin profile:", {
-      baseMargin,
-      riskMargin
-    });
-  };
+interface MarginProfile {
+  name: string;
+  margin_bps: number;
+}
 
+export default function MarginProfileEditor({
+  profiles,
+}: {
+  profiles: MarginProfile[];
+}) {
   return (
-    <div className="p-4">
-      <Input label="Base Margin" value={baseMargin} onChange={setBaseMargin} />
-      <Input label="Risk Margin" value={riskMargin} onChange={setRiskMargin} />
-
-      <Button onClick={save}>Save</Button>
+    <div className="space-y-4">
+      {profiles.map((p, i) => (
+        <div
+          key={i}
+          className="p-4 bg-black border border-white/10 rounded-lg flex justify-between"
+        >
+          <div>{p.name}</div>
+          <div>{p.margin_bps} bps</div>
+        </div>
+      ))}
     </div>
   );
 }

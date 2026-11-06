@@ -1,10 +1,11 @@
-import LendingTypeTable from "../components/LendingTypeTable";
+import LendingTypeTable from "../components/pricing-controls/LendingTypeTable";
+
+const mockTypes = [
+  { type: "Conventional", description: "Standard agency loan" },
+  { type: "FHA", description: "Government insured loan" },
+  { type: "VA", description: "Veteran loan program" },
+];
 
 export default function LendingTypes() {
-  return (
-    <div className="p-6">
-      <h1 className="text-xl font-bold mb-4">Lending Types</h1>
-      <LendingTypeTable />
-    </div>
-  );
+  return <LendingTypeTable types={mockTypes} />;
 }

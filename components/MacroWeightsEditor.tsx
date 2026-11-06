@@ -1,27 +1,28 @@
-import { useState } from "react";
-import Input from "./UI/Input";
-import Button from "./UI/Button";
+"use client";
 
-export default function MacroWeightsEditor() {
-  const [inflation, setInflation] = useState(0.25);
-  const [gdp, setGdp] = useState(0.35);
-  const [employment, setEmployment] = useState(0.40);
+import React from "react";
 
-  const save = () => {
-    console.log("Saving macro weights:", {
-      inflation,
-      gdp,
-      employment
-    });
-  };
+interface MacroWeight {
+  factor: string;
+  weight: number;
+}
 
+export default function MacroWeightsEditor({
+  weights,
+}: {
+  weights: MacroWeight[];
+}) {
   return (
-    <div className="p-4">
-      <Input label="Inflation Weight" value={inflation} onChange={setInflation} />
-      <Input label="GDP Weight" value={gdp} onChange={setGdp} />
-      <Input label="Employment Weight" value={employment} onChange={setEmployment} />
-
-      <Button onClick={save}>Save</Button>
+    <div className="space-y-4">
+      {weights.map((w, i) => (
+        <div
+          key={i}
+          className="p-4 bg-black border border-white/10 rounded-lg flex justify-between"
+        >
+          <div>{w.factor}</div>
+          <div>{w.weight}</div>
+        </div>
+      ))}
     </div>
   );
 }
